@@ -1,12 +1,10 @@
-package com.tcl.ipq.websocket.services;
+package com.example.mingwaytestproject;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-
-import com.tcl.ipq.IpqLogic;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
@@ -34,12 +32,11 @@ public class NetInfoUtils {
                 WifiInfo wifiInfo = wifiManager.getConnectionInfo();
                 //得到IPV4地址
                 String ipAddress = intIP2StringIP(wifiInfo.getIpAddress());
-                InetSocketAddress address = new InetSocketAddress(ipAddress, WebsocketConstant.DEFAULT_PORT);
+                InetSocketAddress address = new InetSocketAddress(ipAddress, 8086);
                 return address;
             } else if (info.getType() == ConnectivityManager.TYPE_ETHERNET) {
                 String localIp = getLocalIp();
-                IpqLogic.logd("NetInfo", "get local ip = " + localIp);
-                return new InetSocketAddress(localIp, WebsocketConstant.DEFAULT_PORT);
+                return new InetSocketAddress(localIp, 8086);
             }
         } else {
             //不在 wifi 网络中。
